@@ -24,7 +24,8 @@ public class ExplosiveView : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float m_step;
 
-    private float m_moveDistance = 3f;
+    [SerializeField] private float m_moveDistance = 3f;
+    
     private readonly List<ExplosiveViewPart> m_parts = new List<ExplosiveViewPart>();
     private readonly List<Transform> m_partTransforms = new List<Transform>();
 
