@@ -22,10 +22,10 @@ public class ExplosiveViewPart
 public class ExplosiveView : MonoBehaviour
 {
     [Range(0.0f, 1.0f)]
-    [SerializeField] private float m_step;
+    [SerializeField] private float m_percentage;
 
     [SerializeField] private float m_moveDistance = 3f;
-    
+
     private readonly List<ExplosiveViewPart> m_parts = new List<ExplosiveViewPart>();
     private readonly List<Transform> m_partTransforms = new List<Transform>();
 
@@ -42,10 +42,15 @@ public class ExplosiveView : MonoBehaviour
 
     private void OnValidate()
     {
+        Explode(m_percentage);
+    }
+
+    public void Explode(float percentage)
+    {
         for (int i = 0; i < m_partTransforms.Count; i++)
         {
-            m_partTransforms[i].position = (1 - m_step) * m_parts[i].StartPosition +
-                                           m_step * m_parts[i].Destination;
+            m_partTransforms[i].position = (1 - percentage) * m_parts[i].StartPosition +
+                                           percentage * m_parts[i].Destination;
         }
     }
 }
